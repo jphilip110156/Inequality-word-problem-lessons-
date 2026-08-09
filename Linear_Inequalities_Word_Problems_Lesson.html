@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Writing Linear Inequalities from Word Problems — Interactive Lesson</title>
+<style>
+  :root {
+    --navy: #0b2545;
+    --teal: #1f7a6c;
+    --teal-dark: #145a4f;
+    --gold: #b8860b;
+    --red: #b3261e;
+    --green: #1b7a2e;
+    --lightblue: #eaf3fb;
+    --lightgreen: #eaf6ec;
+    --lightgold: #fff7e6;
+    --lightred: #fdeceb;
+    --border: #d7dee6;
+    --bg: #f7f9fb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", Calibri, Arial, sans-serif;
+    color: #1c1c1c;
+    background: var(--bg);
+    margin: 0;
+    padding: 0;
+    line-height: 1.55;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px 24px 70px; }
+  header.page-header {
+    background: linear-gradient(135deg, var(--navy), var(--teal-dark));
+    color: white;
+    padding: 34px 24px;
+    text-align: center;
+  }
+  header.page-header h1 { margin: 0 0 6px; font-size: 26px; }
+  header.page-header p { margin: 0; font-size: 15px; opacity: 0.9; }
+
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin: 26px 0 22px; border-bottom: 3px solid var(--border);
+  }
+  .tab-btn {
+    background: #e9eef3; border: none; border-radius: 8px 8px 0 0;
+    padding: 12px 16px; font-size: 14.5px; font-weight: 600; color: var(--navy);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .tab-btn:hover { background: #dbe6ef; }
+  .tab-btn.active { background: var(--navy); color: white; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  h2.section-title {
+    color: var(--navy); font-size: 22px; border-bottom: 3px solid var(--teal);
+    padding-bottom: 8px; margin-top: 0;
+  }
+  h3.sub-title { color: var(--teal-dark); font-size: 17px; margin-top: 26px; }
+
+  .card {
+    background: white; border: 1px solid var(--border); border-radius: 10px;
+    padding: 22px 24px; margin: 16px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .note {
+    background: var(--lightgold); border-left: 4px solid var(--gold);
+    padding: 12px 16px; font-size: 14.5px; margin: 16px 0; border-radius: 4px;
+  }
+  .rule {
+    background: var(--lightblue); border-left: 4px solid var(--navy);
+    padding: 12px 16px; font-size: 15px; margin: 14px 0; border-radius: 4px;
+  }
+
+  .step-box {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: #f7fafc; border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 18px; margin: 12px 0;
+  }
+  .step-num {
+    flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%;
+    background: var(--teal); color: white; font-weight: 800; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-content { flex: 1; }
+  .step-content strong { color: var(--navy); }
+
+  table.keyword-table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 15px; }
+  table.keyword-table th, table.keyword-table td { border: 1px solid var(--border); padding: 10px 14px; text-align: left; }
+  table.keyword-table th { background: var(--navy); color: white; }
+  table.keyword-table tr:nth-child(even) td { background: #f7fafc; }
+  table.keyword-table .symbol { text-align: center; font-weight: 800; color: var(--teal-dark); font-size: 18px; font-family: "Cambria Math", Cambria, Georgia, serif; }
+
+  /* Worked examples */
+  .worked-example { border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin: 18px 0; background: white; }
+  .worked-example h4 { margin: 0 0 10px; color: var(--navy); }
+  .given-block {
+    background: #f7fafc; border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 18px; margin: 10px 0 16px; font-size: 14.5px; font-style: italic; color: #333;
+  }
+  .math-block {
+    background: var(--lightblue); border-left: 4px solid var(--navy);
+    padding: 12px 18px; margin: 10px 0; border-radius: 4px; font-size: 15px;
+  }
+  .math-line { margin: 6px 0; }
+  .final-answer {
+    background: var(--lightgreen); border: 2px solid var(--teal); border-radius: 8px;
+    padding: 12px 18px; margin-top: 12px; font-family: "Cambria Math", Cambria, Georgia, serif;
+    font-size: 19px; font-weight: 700; color: var(--navy); text-align: center;
+  }
+
+  /* Practice (ungraded) */
+  .practice-item { border: 1px solid var(--border); border-radius: 10px; padding: 18px 22px; margin: 18px 0; background: white; }
+  .practice-item h4 { margin: 0 0 8px; color: var(--navy); font-size: 16px; }
+  .practice-item p.problem-text { margin: 0 0 12px; }
+  .solution-box { display: none; margin-top: 12px; background: var(--lightgreen); border-radius: 8px; padding: 12px 16px; font-size: 14.5px; }
+  .solution-box.shown { display: block; }
+  .reveal-btn {
+    background: var(--gold); color: white; border: none; border-radius: 6px;
+    padding: 9px 20px; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .reveal-btn:hover { background: #9a6f08; }
+
+  /* Assignment / quiz */
+  .quiz-question { border: 1px solid var(--border); border-radius: 10px; padding: 20px 22px; margin: 20px 0; background: white; }
+  .quiz-question h4 { margin: 0 0 4px; color: var(--navy); font-size: 16px; }
+  .quiz-tag {
+    display: inline-block; background: var(--lightblue); color: var(--navy);
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 12px; margin-bottom: 10px; letter-spacing: 0.3px;
+  }
+  .problem-block { background: #f7fafc; border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; margin: 12px 0; }
+
+  .var-choice-group { margin: 14px 0; }
+  .var-choice-group .choice-label { font-weight: 700; color: var(--navy); margin-bottom: 8px; display: block; }
+  .var-choice {
+    display: flex; align-items: center; gap: 8px; padding: 8px 10px;
+    border: 1.5px solid var(--border); border-radius: 6px; margin: 6px 0; cursor: pointer;
+    font-size: 14.5px;
+  }
+  .var-choice:hover { background: #f7fafc; }
+  .var-choice input { cursor: pointer; }
+
+  .ineq-builder {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-family: "Cambria Math", Cambria, Georgia, serif; font-size: 17px;
+    background: var(--lightblue); border-radius: 8px; padding: 14px 18px; margin: 14px 0;
+  }
+  .ans-input {
+    width: 62px; text-align: center; font-size: 15px; padding: 6px 4px;
+    border: 1.5px solid var(--border); border-radius: 6px; font-family: "Cambria Math", Cambria, Georgia, serif;
+  }
+  .ans-input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(31,122,108,0.15); }
+  .ineq-select {
+    font-size: 17px; padding: 6px 8px; border: 1.5px solid var(--border); border-radius: 6px;
+    font-family: "Cambria Math", Cambria, Georgia, serif; font-weight: 700; color: var(--teal-dark);
+  }
+  .var-label { font-weight: 700; color: var(--navy); }
+
+  .check-btn {
+    background: var(--teal); color: white; border: none; border-radius: 6px;
+    padding: 9px 20px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 10px;
+  }
+  .check-btn:hover { background: var(--teal-dark); }
+  .feedback { margin-top: 10px; font-weight: 600; font-size: 14.5px; padding: 8px 12px; border-radius: 6px; display: none; }
+  .feedback.correct { background: var(--lightgreen); color: var(--green); display: block; }
+  .feedback.incorrect { background: var(--lightred); color: var(--red); display: block; }
+  .feedback.partial { background: #fff3d6; color: #8a5a00; display: block; }
+
+  .score-panel {
+    background: linear-gradient(135deg, var(--navy), var(--teal-dark)); color: white;
+    border-radius: 10px; padding: 28px; text-align: center; margin-top: 30px;
+  }
+  .score-panel .big-score { font-size: 40px; font-weight: 800; margin: 8px 0; }
+  .score-panel .action-btn {
+    background: var(--gold); color: white; border: none; border-radius: 6px;
+    padding: 9px 20px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 14px;
+  }
+  .score-panel .action-btn:hover { background: #9a6f08; }
+
+  footer.page-footer { text-align: center; color: #888; font-size: 12.5px; padding: 20px; border-top: 1px solid var(--border); margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <h1>Writing Linear Inequalities from Word Problems</h1>
+  <p>Defining variables and translating "at least," "at most," and more into inequalities</p>
+</header>
+
+<div class="wrap">
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="tab-def" onclick="switchTab('tab-def')">1. How to Set It Up</button>
+    <button class="tab-btn" data-tab="tab-examples" onclick="switchTab('tab-examples')">2. Worked Examples</button>
+    <button class="tab-btn" data-tab="tab-practice" onclick="switchTab('tab-practice')">3. Practice</button>
+    <button class="tab-btn" data-tab="tab-quiz" onclick="switchTab('tab-quiz')">4. Assignment (Scored)</button>
+  </div>
+
+  <!-- ============ TAB 1: DEFINITION / HOW-TO ============ -->
+  <div class="tab-panel active" id="tab-def">
+    <h2 class="section-title">Four Steps to Build an Inequality from a Word Problem</h2>
+
+    <div class="card">
+      <div class="step-box">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Define the variables.</strong> Find the two quantities being described, and let a variable stand for each one. By convention, let <strong>x</strong> represent the <em>first</em> quantity mentioned in the problem, and <strong>y</strong> represent the <em>second</em>. Always write the units — "number of tables," not just "tables."
+        </div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Find the per-unit information.</strong> Look for a number attached to each variable — a cost per item, hours per unit, capacity per truck, and so on. That number becomes the <em>coefficient</em> in front of the variable. If nothing is mentioned, the coefficient is just 1.
+        </div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Translate the keyword into a symbol.</strong> Phrases like "at least" or "at most" tell you which inequality symbol to use. See the reference table below.
+        </div>
+      </div>
+      <div class="step-box">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Assemble the inequality.</strong> Combine the coefficients, variables, symbol, and the target number from the problem into one inequality.
+        </div>
+      </div>
+
+      <h3 class="sub-title">Keyword-to-Symbol Reference Table</h3>
+      <table class="keyword-table">
+        <tr><th>Phrase in the Problem</th><th>Symbol</th><th>Meaning</th></tr>
+        <tr><td>"at least," "no less than," "a minimum of," "or more"</td><td class="symbol">&ge;</td><td>greater than or equal to</td></tr>
+        <tr><td>"at most," "no more than," "a maximum of," "or fewer"</td><td class="symbol">&le;</td><td>less than or equal to</td></tr>
+        <tr><td>"more than," "exceeds," "greater than"</td><td class="symbol">&gt;</td><td>strictly greater than</td></tr>
+        <tr><td>"less than," "fewer than," "under"</td><td class="symbol">&lt;</td><td>strictly less than</td></tr>
+        <tr><td>"exactly," "equal to," "is"</td><td class="symbol">=</td><td>equal to</td></tr>
+      </table>
+
+      <div class="note">
+        <strong>Tip:</strong> "at least" and "at most" both <em>include</em> the boundary number, which is why they use &ge; or &le; (with the line underneath) rather than the strict &gt; or &lt;. A store that wants "at least 25 in stock" is perfectly happy with exactly 25.
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 2: WORKED EXAMPLES ============ -->
+  <div class="tab-panel" id="tab-examples">
+    <h2 class="section-title">Worked Examples</h2>
+
+    <div class="worked-example">
+      <h4>Example 1 &mdash; Electronics Store</h4>
+      <div class="given-block">
+        "An electronics store is ordering two types of Blu-ray players, Sony and LG. They want to have at least 25 Blu-ray players in stock."
+      </div>
+      <div class="math-block">
+        <div class="math-line"><strong>Step 1 (define variables):</strong> The first quantity mentioned is Sony players, the second is LG players.<br>
+          &nbsp;&nbsp;Let <strong>x</strong> = number of Sony Blu-ray players.<br>
+          &nbsp;&nbsp;Let <strong>y</strong> = number of LG Blu-ray players.</div>
+        <div class="math-line"><strong>Step 2 (per-unit info):</strong> None given &mdash; every player just counts as 1 toward the total, so both coefficients are 1.</div>
+        <div class="math-line"><strong>Step 3 (keyword):</strong> "at least 25" &rarr; &ge; 25</div>
+        <div class="math-line"><strong>Step 4 (assemble):</strong> total players in stock = x + y, and that must be &ge; 25.</div>
+      </div>
+      <div class="final-answer">x + y &ge; 25</div>
+    </div>
+
+    <div class="worked-example">
+      <h4>Example 2 &mdash; Tables and Chairs</h4>
+      <div class="given-block">
+        "A company builds tables and sets of chairs. Each table requires 2 hours of labor and each set of chairs requires 3 hours. Each week, the company can allow for at most 48 hours for labor."
+      </div>
+      <div class="math-block">
+        <div class="math-line"><strong>Step 1 (define variables):</strong> The first quantity mentioned is tables, the second is sets of chairs.<br>
+          &nbsp;&nbsp;Let <strong>x</strong> = number of tables.<br>
+          &nbsp;&nbsp;Let <strong>y</strong> = number of sets of chairs.</div>
+        <div class="math-line"><strong>Step 2 (per-unit info):</strong> Each table takes 2 hours &rarr; coefficient 2 on x. Each set of chairs takes 3 hours &rarr; coefficient 3 on y.</div>
+        <div class="math-line"><strong>Step 3 (keyword):</strong> "at most 48 hours" &rarr; &le; 48</div>
+        <div class="math-line"><strong>Step 4 (assemble):</strong> total labor hours = 2x + 3y, and that must be &le; 48.</div>
+      </div>
+      <div class="final-answer">2x + 3y &le; 48</div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 3: PRACTICE (UNGRADED) ============ -->
+  <div class="tab-panel" id="tab-practice">
+    <h2 class="section-title">Practice (Self-Check, Not Graded)</h2>
+    <p>Define the variables and build the inequality on paper, then click <strong>Reveal Solution</strong> to check yourself.</p>
+
+    <div class="practice-item">
+      <h4>Practice 1</h4>
+      <p class="problem-text">A bakery sells cupcakes and cookies. To cover daily costs, they need to sell at least 100 items per day.</p>
+      <button class="reveal-btn" onclick="toggleSolution('psol1')">Reveal Solution</button>
+      <div class="solution-box" id="psol1">
+        <div>Let x = number of cupcakes sold, y = number of cookies sold.</div>
+        <div>Keyword "at least" &rarr; &ge;</div>
+        <div><strong>x + y &ge; 100</strong></div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <h4>Practice 2</h4>
+      <p class="problem-text">A gym offers yoga classes (1 hour each) and spin classes (2 hours each). The instructor can teach at most 24 hours per week.</p>
+      <button class="reveal-btn" onclick="toggleSolution('psol2')">Reveal Solution</button>
+      <div class="solution-box" id="psol2">
+        <div>Let x = number of yoga classes, y = number of spin classes.</div>
+        <div>Keyword "at most" &rarr; &le;</div>
+        <div><strong>x + 2y &le; 24</strong></div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <h4>Practice 3</h4>
+      <p class="problem-text">A parking garage charges $5 for valet parking and $3 for self-parking. The garage wants to bring in more than $600 per day.</p>
+      <button class="reveal-btn" onclick="toggleSolution('psol3')">Reveal Solution</button>
+      <div class="solution-box" id="psol3">
+        <div>Let x = number of valet-parked cars, y = number of self-parked cars.</div>
+        <div>Keyword "more than" &rarr; &gt;</div>
+        <div><strong>5x + 3y &gt; 600</strong></div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <h4>Practice 4</h4>
+      <p class="problem-text">A theater sells adult tickets ($12 each) and child tickets ($8 each). The theater wants total revenue of at least $2,400.</p>
+      <button class="reveal-btn" onclick="toggleSolution('psol4')">Reveal Solution</button>
+      <div class="solution-box" id="psol4">
+        <div>Let x = number of adult tickets sold, y = number of child tickets sold.</div>
+        <div>Keyword "at least" &rarr; &ge;</div>
+        <div><strong>12x + 8y &ge; 2400</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TAB 4: ASSIGNMENT (SCORED) ============ -->
+  <div class="tab-panel" id="tab-quiz">
+    <h2 class="section-title">Assignment &mdash; 5 Questions</h2>
+    <p>For each problem: (1) choose the correct variable definitions, and (2) build the inequality. Click <strong>Check Answer</strong> for feedback, then <strong>Calculate My Score</strong> when you're done.</p>
+
+    <!-- Q1 -->
+    <div class="quiz-question" id="q1">
+      <span class="quiz-tag">Farming</span>
+      <h4>Question 1</h4>
+      <div class="problem-block">A farmer plants corn and soybeans. The farmer wants to plant at least 150 acres total between the two crops.</div>
+
+      <div class="var-choice-group">
+        <span class="choice-label">Which correctly defines the variables?</span>
+        <label class="var-choice"><input type="radio" name="q1-vars" value="a"> x = number of acres of corn, y = number of acres of soybeans</label>
+        <label class="var-choice"><input type="radio" name="q1-vars" value="b"> x = number of acres of soybeans, y = number of acres of corn</label>
+        <label class="var-choice"><input type="radio" name="q1-vars" value="c"> x = number of farms, y = acres of soybeans</label>
+        <label class="var-choice"><input type="radio" name="q1-vars" value="d"> x = total acres planted, y = acres of corn</label>
+      </div>
+
+      <div class="ineq-builder">
+        <input type="text" class="ans-input" id="q1-cx"><span class="var-label">x</span> +
+        <input type="text" class="ans-input" id="q1-cy"><span class="var-label">y</span>
+        <select class="ineq-select" id="q1-sym">
+          <option value="">--</option>
+          <option value="&ge;">&ge;</option>
+          <option value="&le;">&le;</option>
+          <option value="&gt;">&gt;</option>
+          <option value="&lt;">&lt;</option>
+          <option value="=">=</option>
+        </select>
+        <input type="text" class="ans-input" id="q1-c">
+      </div>
+
+      <button class="check-btn" onclick="checkQ(1, 'a', 1, 1, '&ge;', 150)">Check Answer</button>
+      <div class="feedback" id="q1-feedback"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="quiz-question" id="q2">
+      <span class="quiz-tag">Moving Company</span>
+      <h4>Question 2</h4>
+      <div class="problem-block">A moving company uses small trucks (2-ton capacity each) and large trucks (5-ton capacity each). For a job, the total capacity used can be at most 40 tons.</div>
+
+      <div class="var-choice-group">
+        <span class="choice-label">Which correctly defines the variables?</span>
+        <label class="var-choice"><input type="radio" name="q2-vars" value="a"> x = number of small trucks, y = number of large trucks</label>
+        <label class="var-choice"><input type="radio" name="q2-vars" value="b"> x = number of large trucks, y = number of small trucks</label>
+        <label class="var-choice"><input type="radio" name="q2-vars" value="c"> x = tons carried by small trucks, y = tons carried by large trucks</label>
+        <label class="var-choice"><input type="radio" name="q2-vars" value="d"> x = number of small trucks, y = total tons carried</label>
+      </div>
+
+      <div class="ineq-builder">
+        <input type="text" class="ans-input" id="q2-cx"><span class="var-label">x</span> +
+        <input type="text" class="ans-input" id="q2-cy"><span class="var-label">y</span>
+        <select class="ineq-select" id="q2-sym">
+          <option value="">--</option>
+          <option value="&ge;">&ge;</option>
+          <option value="&le;">&le;</option>
+          <option value="&gt;">&gt;</option>
+          <option value="&lt;">&lt;</option>
+          <option value="=">=</option>
+        </select>
+        <input type="text" class="ans-input" id="q2-c">
+      </div>
+
+      <button class="check-btn" onclick="checkQ(2, 'a', 2, 5, '&le;', 40)">Check Answer</button>
+      <div class="feedback" id="q2-feedback"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="quiz-question" id="q3">
+      <span class="quiz-tag">Concert Venue</span>
+      <h4>Question 3</h4>
+      <div class="problem-block">A concert venue sells VIP tickets ($150 each) and general admission tickets ($60 each). The venue wants revenue that is more than $9,000.</div>
+
+      <div class="var-choice-group">
+        <span class="choice-label">Which correctly defines the variables?</span>
+        <label class="var-choice"><input type="radio" name="q3-vars" value="a"> x = number of VIP tickets sold, y = number of general tickets sold</label>
+        <label class="var-choice"><input type="radio" name="q3-vars" value="b"> x = number of general tickets sold, y = number of VIP tickets sold</label>
+        <label class="var-choice"><input type="radio" name="q3-vars" value="c"> x = price of a VIP ticket, y = price of a general ticket</label>
+        <label class="var-choice"><input type="radio" name="q3-vars" value="d"> x = total tickets sold, y = number of VIP tickets sold</label>
+      </div>
+
+      <div class="ineq-builder">
+        <input type="text" class="ans-input" id="q3-cx"><span class="var-label">x</span> +
+        <input type="text" class="ans-input" id="q3-cy"><span class="var-label">y</span>
+        <select class="ineq-select" id="q3-sym">
+          <option value="">--</option>
+          <option value="&ge;">&ge;</option>
+          <option value="&le;">&le;</option>
+          <option value="&gt;">&gt;</option>
+          <option value="&lt;">&lt;</option>
+          <option value="=">=</option>
+        </select>
+        <input type="text" class="ans-input" id="q3-c">
+      </div>
+
+      <button class="check-btn" onclick="checkQ(3, 'a', 150, 60, '&gt;', 9000)">Check Answer</button>
+      <div class="feedback" id="q3-feedback"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="quiz-question" id="q4">
+      <span class="quiz-tag">Catering</span>
+      <h4>Question 4</h4>
+      <div class="problem-block">A caterer offers chicken meals (20 minutes of prep each) and vegetarian meals (15 minutes of prep each). The kitchen allows up to 300 minutes of prep time for an event.</div>
+
+      <div class="var-choice-group">
+        <span class="choice-label">Which correctly defines the variables?</span>
+        <label class="var-choice"><input type="radio" name="q4-vars" value="a"> x = number of chicken meals, y = number of vegetarian meals</label>
+        <label class="var-choice"><input type="radio" name="q4-vars" value="b"> x = number of vegetarian meals, y = number of chicken meals</label>
+        <label class="var-choice"><input type="radio" name="q4-vars" value="c"> x = minutes to prep chicken, y = minutes to prep vegetarian</label>
+        <label class="var-choice"><input type="radio" name="q4-vars" value="d"> x = number of chicken meals, y = total meals prepared</label>
+      </div>
+
+      <div class="ineq-builder">
+        <input type="text" class="ans-input" id="q4-cx"><span class="var-label">x</span> +
+        <input type="text" class="ans-input" id="q4-cy"><span class="var-label">y</span>
+        <select class="ineq-select" id="q4-sym">
+          <option value="">--</option>
+          <option value="&ge;">&ge;</option>
+          <option value="&le;">&le;</option>
+          <option value="&gt;">&gt;</option>
+          <option value="&lt;">&lt;</option>
+          <option value="=">=</option>
+        </select>
+        <input type="text" class="ans-input" id="q4-c">
+      </div>
+
+      <button class="check-btn" onclick="checkQ(4, 'a', 20, 15, '&le;', 300)">Check Answer</button>
+      <div class="feedback" id="q4-feedback"></div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="quiz-question" id="q5">
+      <span class="quiz-tag">Fundraising</span>
+      <h4>Question 5</h4>
+      <div class="problem-block">A charity raises money through $25 gifts and $100 gifts. The charity needs to raise at least $5,000.</div>
+
+      <div class="var-choice-group">
+        <span class="choice-label">Which correctly defines the variables?</span>
+        <label class="var-choice"><input type="radio" name="q5-vars" value="a"> x = number of $25 gifts, y = number of $100 gifts</label>
+        <label class="var-choice"><input type="radio" name="q5-vars" value="b"> x = number of $100 gifts, y = number of $25 gifts</label>
+        <label class="var-choice"><input type="radio" name="q5-vars" value="c"> x = total dollars raised, y = number of $100 gifts</label>
+        <label class="var-choice"><input type="radio" name="q5-vars" value="d"> x = number of donors, y = number of $100 gifts</label>
+      </div>
+
+      <div class="ineq-builder">
+        <input type="text" class="ans-input" id="q5-cx"><span class="var-label">x</span> +
+        <input type="text" class="ans-input" id="q5-cy"><span class="var-label">y</span>
+        <select class="ineq-select" id="q5-sym">
+          <option value="">--</option>
+          <option value="&ge;">&ge;</option>
+          <option value="&le;">&le;</option>
+          <option value="&gt;">&gt;</option>
+          <option value="&lt;">&lt;</option>
+          <option value="=">=</option>
+        </select>
+        <input type="text" class="ans-input" id="q5-c">
+      </div>
+
+      <button class="check-btn" onclick="checkQ(5, 'a', 25, 100, '&ge;', 5000)">Check Answer</button>
+      <div class="feedback" id="q5-feedback"></div>
+    </div>
+
+    <div class="score-panel">
+      <div style="font-size:14px; opacity:0.85; text-transform:uppercase; letter-spacing:0.5px;">Your Results</div>
+      <div class="big-score" id="final-score-display">— / 5</div>
+      <div id="final-score-message" style="font-size:15px;"></div>
+      <button class="action-btn" onclick="calculateScore()">Calculate My Score</button>
+    </div>
+  </div>
+
+</div>
+
+<footer class="page-footer">
+  MAT 1460/1455 &middot; Writing Linear Inequalities from Word Problems &middot; Interactive Lesson
+</footer>
+
+<script>
+/* ============================================================
+   TAB SWITCHING
+   ============================================================ */
+function switchTab(id) {
+  var panels = document.querySelectorAll(".tab-panel");
+  for (var i = 0; i < panels.length; i++) { panels[i].classList.remove("active"); }
+  var btns = document.querySelectorAll(".tab-btn");
+  for (var j = 0; j < btns.length; j++) { btns[j].classList.remove("active"); }
+  document.getElementById(id).classList.add("active");
+  document.querySelector('.tab-btn[data-tab="' + id + '"]').classList.add("active");
+}
+
+/* ============================================================
+   PRACTICE REVEAL TOGGLES
+   ============================================================ */
+function toggleSolution(id) {
+  document.getElementById(id).classList.toggle("shown");
+}
+
+/* ============================================================
+   ASSIGNMENT / QUIZ
+   ============================================================ */
+var quizScores = { 1: false, 2: false, 3: false, 4: false, 5: false };
+
+function numEq(a, b, tol) {
+  tol = tol || 0.01;
+  var v = parseFloat(a);
+  if (isNaN(v)) return false;
+  return Math.abs(v - b) < tol;
+}
+
+function checkQ(n, correctVarChoice, cx, cy, sym, c) {
+  var selectedVar = document.querySelector('input[name="q' + n + '-vars"]:checked');
+  var varCorrect = selectedVar && selectedVar.value === correctVarChoice;
+
+  var cxVal = document.getElementById('q' + n + '-cx').value;
+  var cyVal = document.getElementById('q' + n + '-cy').value;
+  var cVal = document.getElementById('q' + n + '-c').value;
+  var symVal = document.getElementById('q' + n + '-sym').value;
+
+  var ineqCorrect = numEq(cxVal, cx) && numEq(cyVal, cy) && numEq(cVal, c) && symVal === sym;
+
+  var feedbackId = 'q' + n + '-feedback';
+  var el = document.getElementById(feedbackId);
+
+  if (varCorrect && ineqCorrect) {
+    el.className = "feedback correct";
+    el.innerHTML = "&#10003; Correct! Both the variable definitions and the inequality are right.";
+    quizScores[n] = true;
+  } else if (ineqCorrect && !varCorrect) {
+    el.className = "feedback partial";
+    el.innerHTML = "&#9888; Your inequality is correct, but double-check your variable definitions &mdash; remember, x is usually the first quantity mentioned in the problem.";
+    quizScores[n] = false;
+  } else if (varCorrect && !ineqCorrect) {
+    el.className = "feedback partial";
+    el.innerHTML = "&#9888; Your variable definitions are correct, but the inequality needs work. Check your coefficients, symbol, and constant.";
+    quizScores[n] = false;
+  } else {
+    el.className = "feedback incorrect";
+    el.innerHTML = "&#10007; Not quite. Review both the variable definitions and the inequality, then try again.";
+    quizScores[n] = false;
+  }
+}
+
+function calculateScore() {
+  var total = 5;
+  var score = 0;
+  var keys = Object.keys(quizScores);
+  for (var k = 0; k < keys.length; k++) { if (quizScores[keys[k]]) score++; }
+  document.getElementById("final-score-display").textContent = score + " / " + total;
+
+  var msg;
+  var pct = (score / total) * 100;
+  if (pct === 100) msg = "Excellent! You've mastered translating word problems into inequalities.";
+  else if (pct >= 80) msg = "Great work! Review the one you missed and try again.";
+  else if (pct >= 60) msg = "Good effort. Revisit the Worked Examples tab, then try the missed questions again.";
+  else msg = "Keep practicing! Go back to the How-To and Worked Examples tabs, then retry each question.";
+  document.getElementById("final-score-message").textContent = msg;
+}
+</script>
+
+</body>
+</html>
